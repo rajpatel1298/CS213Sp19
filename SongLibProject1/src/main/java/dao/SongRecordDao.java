@@ -2,6 +2,7 @@ package main.java.dao;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +59,26 @@ public class SongRecordDao implements Dao<SongRecordDto> {
 	public void save(SongRecordDto SongRecordDto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void saveAll(List<SongRecordDto> songRecordList) {
+		try (FileWriter fw = new FileWriter(filePath)) {
+			for (SongRecordDto song : songRecordList) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(song.getTitle());
+				sb.append(',');
+				sb.append(song.getAlbum());
+				sb.append(',');
+				sb.append(song.getArtist());
+				sb.append(',');
+				sb.append(song.getYear());
+				sb.append("\n");
+				fw.write(sb.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
