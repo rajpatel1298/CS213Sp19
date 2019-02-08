@@ -1,2 +1,5 @@
 Song Name1,Album1,Artist Name1,2019
-Song Name2,Album2,Artist Name2,2019
+,Album2,Artist Name2,2019
+,,,2019
+Song Name3,Album3,Artist Name3,2019,Extra Entry
+Song Name4,Album4,
