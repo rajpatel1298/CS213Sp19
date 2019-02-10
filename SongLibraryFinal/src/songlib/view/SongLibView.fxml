@@ -21,6 +21,6 @@
       <ListView fx:id="songList" layoutX="14.0" layoutY="90.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
       <Button fx:id="editButton" layoutX="323.0" layoutY="67.0" mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Edit" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
       <Button fx:id="addButton" layoutX="308.0" layoutY="155.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
-      <Button fx:id="deleteButton" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="310.0" />
+      <Button fx:id="deleteButton" onAction="#deleteButtonClicked" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="310.0" />
    </children>
 </AnchorPane>

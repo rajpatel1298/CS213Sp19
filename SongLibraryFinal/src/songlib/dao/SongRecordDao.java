@@ -120,7 +120,34 @@ public class SongRecordDao {
 			}
 			this.songSortOrderMap.put(song.getTitleAndArtist(), i++);
 		}
+		
+		// persist to file system
+		this.saveAll(this.songListCache);
+		
 		return selectedIndex;
+	}
+
+	public int deleteSong(int selectedRecordIndex) {
+		this.songListCache.remove(selectedRecordIndex);
+		this.songSortOrderMap = new TreeMap<String, Integer>();
+		
+		int i = 0;
+		for (SongRecordDto song : this.songListCache) {
+			this.songSortOrderMap.put(song.getTitleAndArtist(), i++);
+		}
+		// persist to file system
+		this.saveAll(this.songListCache);
+		
+		// list is now empty
+		if (selectedRecordIndex == 0) {
+			return selectedRecordIndex;
+		}
+		// if we delete the last record in the list then select the previous record
+		if (selectedRecordIndex > songListCache.size()-1) {
+			return selectedRecordIndex-1;
+		}
+		// else select the next record
+		return selectedRecordIndex;
 	}
 
 }

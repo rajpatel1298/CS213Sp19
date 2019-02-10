@@ -70,6 +70,11 @@ public class SongLibController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deleteButtonClicked(ActionEvent event) {
+		selectedRecordIndex = SongRecordDao.getInstance().deleteSong(selectedRecordIndex);
+		this.start();
+	}
 
 }
 
