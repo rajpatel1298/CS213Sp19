@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 import javafx.util.Callback;
 import songlib.models.SongRecordDto;
@@ -18,7 +19,7 @@ public class SongRecordDao {
 	
 	private static String filePath;
 	private static List<SongRecordDto> songListCache;
-	private static Map<String, String> songDetailMap;
+	private static Map<String, Integer> songSortOrderMap; // uses the song's titleAndArtist string as a key
 	
 	private SongRecordDao(String path) {
 		filePath = path;
@@ -81,15 +82,26 @@ public class SongRecordDao {
 	}
 
 	public String[] getSortedSongList() {
+		// sort the song list cache
 		Collections.sort(this.songListCache);
+		// clear the sort order Map and reset.
+		songSortOrderMap = new TreeMap<String, Integer>();
 		
 		String[] sortedSongArray = new String[this.songListCache.size()];
 		int i = 0;
 		for (SongRecordDto song : this.songListCache) {
+			songSortOrderMap.put(song.getTitleAndArtist(), i);
 			sortedSongArray[i++] = song.toString();
 		}
 		
 		return sortedSongArray;
+	}
+	
+	public int getIndexFromSortOrderMap(String target) {
+		if (songSortOrderMap != null) {
+			return songSortOrderMap.get(target);
+		}
+		return 0;
 	}
 
 }

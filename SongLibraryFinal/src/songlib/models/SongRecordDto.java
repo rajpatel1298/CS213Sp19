@@ -40,6 +40,7 @@ public class SongRecordDto implements Comparable<SongRecordDto> {
 		} else {
 			titleAndArtist = this.getTitle() + this.getArtist();
 			titleAndArtist = titleAndArtist.replaceAll("\\s+","");
+			titleAndArtist = titleAndArtist.replaceAll("'","");
 			titleAndArtist = titleAndArtist.toLowerCase();
 		}
 		return titleAndArtist;
