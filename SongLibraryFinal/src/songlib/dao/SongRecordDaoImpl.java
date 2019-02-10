@@ -9,19 +9,13 @@ import java.util.Optional;
 
 import songlib.models.SongRecordDto;
 
-public class SongRecordDao implements Dao<SongRecordDao> {
+public class SongRecordDaoImpl implements Dao<SongRecordDto> {
 
 	private String filePath;
 	
-	public SongRecordDao(String filePath) {
+	public SongRecordDaoImpl(String filePath) {
 		this.filePath = filePath;
 		this.filePath = "src/songlib/resources/song_record_db.csv";
-	}
-	
-	@Override
-	public Optional<SongRecordDto> get(long id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -56,12 +50,6 @@ public class SongRecordDao implements Dao<SongRecordDao> {
 	}
 
 	@Override
-	public void save(SongRecordDto SongRecordDto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void saveAll(List<SongRecordDto> songRecordList) {
 		try (FileWriter fw = new FileWriter(filePath)) {
 			for (SongRecordDto song : songRecordList) {
@@ -79,18 +67,6 @@ public class SongRecordDao implements Dao<SongRecordDao> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void update(SongRecordDto SongRecordDto, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(SongRecordDto SongRecordDto) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
