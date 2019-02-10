@@ -26,9 +26,9 @@ public class SongLibController {
 	@FXML private Button editButton;
 	@FXML private Button deleteButton;
 	
-	private static int selectedRecordIndex;
+	public static int selectedRecordIndex;
 	private ObservableList<String> obsList;
-	
+
 	
 	@SuppressWarnings("unchecked")
 	public void start() {		

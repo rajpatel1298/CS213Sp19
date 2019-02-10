@@ -104,4 +104,23 @@ public class SongRecordDao {
 		return 0;
 	}
 
+	public int addNewSongRecord(SongRecordDto songRecord) {
+		this.songListCache.add(songRecord);
+		Collections.sort(this.songListCache);
+		this.songSortOrderMap = new TreeMap<String, Integer>();
+		
+		String selectedSongTitleAndArtist = songRecord.getTitleAndArtist();
+		int selectedIndex = 0;
+		int i = 0;
+		for (SongRecordDto song : this.songListCache) {
+			if (selectedSongTitleAndArtist.equals(song.getTitleAndArtist())) {
+				// we do this so we can pass it back to the SongLibAddView 
+				// and set the SongLibView's songList(listView) selected record before we transition
+				selectedIndex = i;
+			}
+			this.songSortOrderMap.put(song.getTitleAndArtist(), i++);
+		}
+		return selectedIndex;
+	}
+
 }
