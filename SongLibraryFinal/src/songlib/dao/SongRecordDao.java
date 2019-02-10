@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javafx.util.Callback;
@@ -16,6 +18,7 @@ public class SongRecordDao {
 	
 	private static String filePath;
 	private static List<SongRecordDto> songListCache;
+	private static Map<String, String> songDetailMap;
 	
 	private SongRecordDao(String path) {
 		filePath = path;
@@ -78,8 +81,15 @@ public class SongRecordDao {
 	}
 
 	public String[] getSortedSongList() {
-		// TODO Auto-generated method stub
-		return new String[] {"test2","test7","test22"};
+		Collections.sort(this.songListCache);
+		
+		String[] sortedSongArray = new String[this.songListCache.size()];
+		int i = 0;
+		for (SongRecordDto song : this.songListCache) {
+			sortedSongArray[i++] = song.toString();
+		}
+		
+		return sortedSongArray;
 	}
 
 }

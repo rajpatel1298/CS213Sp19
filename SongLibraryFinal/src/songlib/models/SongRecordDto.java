@@ -1,11 +1,12 @@
 package songlib.models;
 
-public class SongRecordDto {
+public class SongRecordDto implements Comparable<SongRecordDto> {
 
 	private String title;
 	private String artist;
 	private String album;
 	private int year;
+	private String titleAndArtist;
 	
 	
 	public String getTitle() {
@@ -31,6 +32,27 @@ public class SongRecordDto {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+	public String getTitleAndArtist() {
+		String titleAndArtist = "";
+		if (this.getTitle() == null || this.getArtist() == null) {
+			System.err.println("Error: Song Title and Artist cannot be null.");
+		} else {
+			titleAndArtist = this.getTitle() + this.getArtist();
+			titleAndArtist = titleAndArtist.replaceAll("\\s+","");
+			titleAndArtist = titleAndArtist.toLowerCase();
+		}
+		return titleAndArtist;
+	}
+
+	@Override
+	public int compareTo(SongRecordDto otherSongRecordDto) {
+		return this.getTitleAndArtist().compareTo(otherSongRecordDto.getTitleAndArtist());
+	}
+	
+	@Override
+	public String toString() {
+		return "Title: " + this.getTitle() + ",  Artist: " + this.getArtist();
 	}
 	
 }

@@ -54,9 +54,6 @@ public class SongLibController {
 			e.printStackTrace();
 		}
 	}
-	
-	public String[] getSortedSongList() {
-		return new String[] {"test1", "test2", "test3"};
-	}
+
 }
 
