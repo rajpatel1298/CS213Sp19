@@ -24,9 +24,15 @@ public class SongLibAddController {
 	
 	public void cancelButtonClicked(ActionEvent event) {
 		try {
-			Parent songLibViewParent = FXMLLoader.load(getClass().getResource("/songlib/view/SongLibView.fxml"));
-			Scene songLibScene = new Scene(songLibViewParent);
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/songlib/view/SongLibView.fxml"));
+			
+			Scene songLibScene = new Scene((Parent)loader.load());
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+			
+			SongLibController songLibController = loader.getController();
+			songLibController.start();
+			
 			window.setScene(songLibScene);
 			window.show();
 		} catch (IOException e) {

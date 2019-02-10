@@ -7,20 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javafx.util.Callback;
 import songlib.models.SongRecordDto;
 
-public class SongRecordDaoImpl implements Dao<SongRecordDto> {
-
-	private String filePath;
+public class SongRecordDao {
 	
-	public SongRecordDaoImpl(String filePath) {
-		this.filePath = filePath;
-		this.filePath = "src/songlib/resources/song_record_db.csv";
+	private static final String DB_PATH = "src/songlib/resources/song_record_db.csv";
+	
+	private static String filePath;
+	private static List<SongRecordDto> songListCache;
+	
+	private SongRecordDao(String path) {
+		filePath = path;
+		getAll();
+	}
+	
+	private static class InstanceHolder {
+		public static SongRecordDao instance = new SongRecordDao(DB_PATH);
+	}
+	
+	public static SongRecordDao getInstance() {
+		return InstanceHolder.instance;
 	}
 
-	@Override
-	public List<SongRecordDto> getAll() {
-		List<SongRecordDto> songList = new ArrayList<>();
+	private static void getAll() {
+		songListCache = new ArrayList<>();
 		
 		try (FileReader fr = new FileReader(filePath); 
 			 BufferedReader br = new BufferedReader(fr)) {
@@ -39,17 +50,14 @@ public class SongRecordDaoImpl implements Dao<SongRecordDto> {
 			    	song.setAlbum(songRecordAttributes[1]);
 			    	song.setArtist(songRecordAttributes[2]);
 			    	song.setYear(Integer.parseInt(songRecordAttributes[3]));
-			    	songList.add(song);
+			    	songListCache.add(song);
 			    }
 	    	}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-	    return songList;
 	}
 
-	@Override
 	public void saveAll(List<SongRecordDto> songRecordList) {
 		try (FileWriter fw = new FileWriter(filePath)) {
 			for (SongRecordDto song : songRecordList) {
@@ -67,6 +75,11 @@ public class SongRecordDaoImpl implements Dao<SongRecordDto> {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String[] getSortedSongList() {
+		// TODO Auto-generated method stub
+		return new String[] {"test2","test7","test22"};
 	}
 
 }

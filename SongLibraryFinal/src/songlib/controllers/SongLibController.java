@@ -1,7 +1,10 @@
 package songlib.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import songlib.dao.SongRecordDao;
 
 public class SongLibController {
 
@@ -18,6 +22,14 @@ public class SongLibController {
 	@FXML private Button addButton;
 	@FXML private Button editButton;
 	@FXML private Button deleteButton;
+	
+	private ObservableList<String> obsList;
+	
+	
+	public void start() {		
+		this.obsList = FXCollections.observableArrayList(SongRecordDao.getInstance().getSortedSongList());
+		songList.setItems(obsList);
+	}
 	
 	public void addButtonClicked(ActionEvent event) {
 		try {
@@ -41,6 +53,10 @@ public class SongLibController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String[] getSortedSongList() {
+		return new String[] {"test1", "test2", "test3"};
 	}
 }
 

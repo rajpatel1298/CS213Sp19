@@ -17,9 +17,10 @@
             <Font name="Arial Narrow" size="18.0" />
          </font>
       </Text>
-      <ListView fx:id="songList" layoutX="14.0" layoutY="90.0" prefHeight="250.0" prefWidth="250.0" AnchorPane.leftAnchor="20.0" />
-      <Button fx:id="addButton" onAction="#addButtonClicked" layoutX="323.0" layoutY="67.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
-      <Button fx:id="editButton" onAction="#editButtonClicked" layoutX="308.0" layoutY="155.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Edit" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="150.0" />
-      <Button fx:id="deleteButton" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="210.0" />
+      <Text layoutX="20.0" fx:id="songDetailText" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song Detail" AnchorPane.bottomAnchor="252.2578125" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.7421875" />
+      <ListView fx:id="songList" layoutX="14.0" layoutY="90.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <Button fx:id="editButton" layoutX="323.0" layoutY="67.0" mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Edit" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+      <Button fx:id="addButton" layoutX="308.0" layoutY="155.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <Button fx:id="deleteButton" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="310.0" />
    </children>
 </AnchorPane>
