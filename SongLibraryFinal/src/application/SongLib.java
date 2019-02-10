@@ -13,12 +13,13 @@ public class SongLib extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/songlib/view/SongLib.fxml"));
+			loader.setLocation(getClass().getResource("/songlib/view/SongLibView.fxml"));
 
 			AnchorPane root = (AnchorPane)loader.load();
 			
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setResizable(false); // make app window NOT resizable
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="songlib.controllers.SongLibAddController" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="151.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Song" textAlignment="CENTER" AnchorPane.bottomAnchor="349.0" AnchorPane.leftAnchor="151.0" AnchorPane.rightAnchor="150.544921875" AnchorPane.topAnchor="30.0">
          <font>
@@ -20,30 +20,30 @@
       </Text>
       <VBox layoutX="14.0" layoutY="90.0" prefHeight="277.0" prefWidth="262.0" AnchorPane.leftAnchor="20.0">
          <children>
-            <TextField prefHeight="0.0" prefWidth="262.0" promptText="Song Title">
+            <TextField fx:id="songTitleTextField" prefHeight="0.0" prefWidth="262.0" promptText="Song Title">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Album Title">
+            <TextField fx:id="albumTitleTextField" promptText="Album Title">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Artist Name">
+            <TextField fx:id="artistNameTextField" promptText="Artist Name">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
-            <TextField promptText="Album Year">
+            <TextField fx:id="albumYearTextField" promptText="Album Year">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
          </children>
       </VBox>
-      <Button layoutX="316.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
-      <Button layoutX="296.0" layoutY="179.0" mnemonicParsing="false" text="Clear All" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0" />
-      <Button layoutX="316.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Cancel" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="340.0" />
+      <Button fx:id="addButton" layoutX="316.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+      <Button fx:id="clearAllButton" layoutX="296.0" layoutY="179.0" mnemonicParsing="false" text="Clear All" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0" />
+      <Button fx:id="cancelButton" onAction="#cancelButtonClicked" layoutX="316.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Cancel" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="340.0" />
    </children>
 </AnchorPane>
