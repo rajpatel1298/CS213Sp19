@@ -69,4 +69,11 @@ public class SongLibAddController {
 			e.printStackTrace();
 		}
 	}
+	
+	public void clearAllButtonClicked(ActionEvent event) {
+		this.songTitleTextField.setText("");
+		this.albumTitleTextField.setText("");
+		this.artistNameTextField.setText("");
+		this.albumYearTextField.setText("");
+	}
 }

@@ -150,4 +150,8 @@ public class SongRecordDao {
 		return selectedRecordIndex;
 	}
 
+	public SongRecordDto getSongRecord(int selectedRecordIndex) {
+		return this.songListCache.get(selectedRecordIndex);
+	}
+
 }

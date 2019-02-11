@@ -39,6 +39,13 @@ public class SongLibController {
 		songList.getSelectionModel().select(selectedRecordIndex);
 		songList.getFocusModel().focus(selectedRecordIndex);
 		
+		// we want to disable the edit button if there are no records in the list
+		if (SongRecordDao.getInstance().getSortedSongList().length == 0) {
+			editButton.setDisable(true);
+		} else {
+			editButton.setDisable(false);
+		}
+		
 		songList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -61,7 +68,11 @@ public class SongLibController {
 	
 	public void editButtonClicked(ActionEvent event) {
 		try {
-			Parent songLibEditViewParent = FXMLLoader.load(getClass().getResource("/songlib/view/SongLibEditView.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/songlib/view/SongLibEditView.fxml"));
+			Parent songLibEditViewParent = fxmlLoader.load();
+			SongLibEditController songLibEditController = fxmlLoader.<SongLibEditController>getController();
+			songLibEditController.start();
+			
 			Scene songLibEditScene = new Scene(songLibEditViewParent);
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			window.setScene(songLibEditScene);

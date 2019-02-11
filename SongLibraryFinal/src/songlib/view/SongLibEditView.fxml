@@ -42,8 +42,8 @@
             </TextField>
          </children>
       </VBox>
-      <Button fx:id="saveButton" layoutX="316.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Save" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
-      <Button fx:id="clearAllButton" layoutX="296.0" layoutY="179.0" mnemonicParsing="false" text="Clear All" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0" />
+      <Button fx:id="saveButton" onAction="#saveButtonClicked" layoutX="316.0" layoutY="90.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Save" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
+      <Button fx:id="clearAllButton" onAction="#clearAllButtonClicked" layoutX="296.0" layoutY="179.0" mnemonicParsing="false" text="Clear All" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="230.0" />
       <Button fx:id="cancelButton" onAction="#cancelButtonClicked" layoutX="316.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Cancel" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="340.0" />
    </children>
 </AnchorPane>
