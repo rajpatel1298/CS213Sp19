@@ -10,17 +10,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="363.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songlib.controllers.SongLibController">
+<AnchorPane prefHeight="400.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="songlib.controllers.SongLibController">
    <children>
      <Text layoutX="148.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song Library" AnchorPane.leftAnchor="148.0" AnchorPane.rightAnchor="148.310546875" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Arial Narrow" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="20.0" fx:id="songDetailText" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song Detail" AnchorPane.bottomAnchor="252.2578125" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.7421875" />
-      <ListView fx:id="songList" layoutX="14.0" layoutY="90.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <Text fx:id="songDetailText" layoutX="20.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.bottomAnchor="252.2578125" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.7421875" />
+      <ListView fx:id="songList" layoutX="14.0" layoutY="90.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="180.0" />
       <Button fx:id="editButton" layoutX="323.0" layoutY="67.0" mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Edit" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0" />
-      <Button fx:id="addButton" layoutX="308.0" layoutY="155.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
-      <Button fx:id="deleteButton" onAction="#deleteButtonClicked" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="310.0" />
+      <Button fx:id="addButton" layoutX="308.0" layoutY="155.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Add" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="180.0" />
+      <Button fx:id="deleteButton" layoutX="309.0" layoutY="208.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="27.0" prefWidth="58.0" text="Delete" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="350.0" />
    </children>
 </AnchorPane>
