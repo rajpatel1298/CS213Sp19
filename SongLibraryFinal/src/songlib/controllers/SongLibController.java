@@ -1,8 +1,6 @@
 package songlib.controllers;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,8 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import songlib.dao.SongRecordDao;
 
@@ -88,8 +89,16 @@ public class SongLibController {
 	}
 	
 	public void deleteButtonClicked(ActionEvent event) {
-		selectedRecordIndex = SongRecordDao.getInstance().deleteSong(selectedRecordIndex);
-		this.start();
+		// verify that user wishes to delete the record
+		Alert alert = new Alert(AlertType.CONFIRMATION, "Are You Sure You Want to Delete?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+		alert.showAndWait();
+
+		if (alert.getResult() == ButtonType.YES) {
+			selectedRecordIndex = SongRecordDao.getInstance().deleteSong(selectedRecordIndex);
+			this.start();
+		}
+		return;
+		
 	}
 
 }
