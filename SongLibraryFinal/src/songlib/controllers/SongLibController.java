@@ -32,8 +32,13 @@ public class SongLibController {
 	
 	@SuppressWarnings("unchecked")
 	public void start() {		
+		int tempSelectedIndex = selectedRecordIndex;
 		this.obsList = FXCollections.observableArrayList(SongRecordDao.getInstance().getSortedSongList());
 		songList.setItems(obsList);
+	
+		// we need this because the above statement songList.setItems(obsList) 
+		// triggers the event listener on the obsList and sets the selectedRecordIndex to -1
+		selectedRecordIndex = tempSelectedIndex;
 		
 		// set focus on the selected song record
 		songList.getSelectionModel().select(selectedRecordIndex);
