@@ -5,7 +5,7 @@ public class SongRecordDto implements Comparable<SongRecordDto> {
 	private String title;
 	private String artist;
 	private String album;
-	private int year;
+	private Integer year;
 	private String titleAndArtist;
 	
 	
@@ -27,10 +27,10 @@ public class SongRecordDto implements Comparable<SongRecordDto> {
 	public void setAlbum(String album) {
 		this.album = album;
 	}
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 	public String getTitleAndArtist() {

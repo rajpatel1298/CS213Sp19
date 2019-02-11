@@ -72,7 +72,9 @@ public class SongRecordDao {
 				sb.append(',');
 				sb.append(song.getArtist());
 				sb.append(',');
-				sb.append(song.getYear());
+				if (song.getYear() != null) {
+					sb.append(song.getYear());
+				}
 				sb.append("\n");
 				fw.write(sb.toString());
 			}
@@ -152,6 +154,10 @@ public class SongRecordDao {
 
 	public SongRecordDto getSongRecord(int selectedRecordIndex) {
 		return this.songListCache.get(selectedRecordIndex);
+	}
+
+	public boolean isValidTitleAndArtist(String titleAndArtist) {
+		return !this.songSortOrderMap.containsKey(titleAndArtist);
 	}
 
 }
