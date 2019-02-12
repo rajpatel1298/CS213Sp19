@@ -90,9 +90,6 @@ public class SongLibEditController {
 			Scene songLibScene = new Scene((Parent)loader.load());
 			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 			
-			// delete the old record
-			SongRecordDao.getInstance().deleteSong(SongLibController.selectedRecordIndex);
-			
 			// create new record
 			SongRecordDto songRecord = new SongRecordDto();
 			songRecord.setTitle(songTitleTextField.getText());
@@ -108,6 +105,9 @@ public class SongLibEditController {
 				alert.showAndWait();
 				return;
 			}
+			
+			// delete the old record
+			SongRecordDao.getInstance().deleteSong(SongLibController.selectedRecordIndex);			
 			
 			// add new record to data cache and get the sorted index back so we can set
 			// the songList (listView) selected record
