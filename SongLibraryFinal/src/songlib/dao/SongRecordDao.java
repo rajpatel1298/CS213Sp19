@@ -42,7 +42,12 @@ public class SongRecordDao {
 		
 	    	for (String songRecordLine = br.readLine(); songRecordLine != null; songRecordLine = br.readLine()) {
 			    if (songRecordLine != null && !songRecordLine.isEmpty()) {
-			    	String[] songRecordAttributes = songRecordLine.split(",");
+			    	/*
+			    	 * split uses regular expression and in regex | is a metacharacter representing the OR operator. 
+			    	 * You need to escape that character using \ (written in String as "\\" since \ is also a 
+			    	 * metacharacter in String literals and require another \ to escape it).
+			    	 */
+			    	String[] songRecordAttributes = songRecordLine.split("\\|");
 			    	
 			    	if (songRecordAttributes.length != 4) {
 			    		System.err.println("Error: Invalid number of columns in record entry.");
@@ -67,11 +72,11 @@ public class SongRecordDao {
 			for (SongRecordDto song : songRecordList) {
 				StringBuilder sb = new StringBuilder();
 				sb.append(song.getTitle());
-				sb.append(',');
+				sb.append('|');
 				sb.append(song.getAlbum());
-				sb.append(',');
+				sb.append('|');
 				sb.append(song.getArtist());
-				sb.append(',');
+				sb.append('|');
 				if (song.getYear() != null) {
 					sb.append(song.getYear());
 				}

@@ -60,27 +60,23 @@ public class SongLibEditController {
 	
 	public void saveButtonClicked(ActionEvent event) {
 		String songTitle = songTitleTextField.getText();
-		if (songTitle == null || songTitle.isEmpty()) {
-			Alert alert = new Alert(AlertType.ERROR, "Please Enter a Song Title", ButtonType.OK);
-			alert.showAndWait();
+		if (!isValidSongTitle(songTitle)) {
 			return;
 		}
 		String artistName = artistNameTextField.getText();
-		if (artistName == null || artistName.isEmpty()) {
-			Alert alert = new Alert(AlertType.ERROR, "Please Enter an Artist Name", ButtonType.OK);
-			alert.showAndWait();
+		if (!isValidArtistName(artistName)) {
 			return;
 		}
 		String albumTitle = albumTitleTextField.getText();
-		Integer songYear = null;
+		if (!isValidAlbumTitle(albumTitle)) {
+			return;
+		}
+		Integer albumYear = null;
 		if (!albumYearTextField.getText().isEmpty()) {
-			if (tryParseInteger(albumYearTextField.getText())) {
-				songYear = Integer.parseInt(albumYearTextField.getText());
-			} else {
-				Alert alert = new Alert(AlertType.ERROR, "Please Enter a Valid Year.", ButtonType.OK);
-				alert.showAndWait();
+			if (!parseValidAlbumYear(albumYearTextField.getText())) {
 				return;
 			}
+			albumYear = Integer.parseInt(albumYearTextField.getText());
 		}
 		
 		try {
@@ -92,15 +88,16 @@ public class SongLibEditController {
 			
 			// create new record
 			SongRecordDto songRecord = new SongRecordDto();
-			songRecord.setTitle(songTitleTextField.getText());
-			songRecord.setAlbum(albumTitleTextField.getText());
-			songRecord.setArtist(artistNameTextField.getText());
-			if (albumYearTextField.getText() != null && !albumYearTextField.getText().isEmpty()) {
-				songRecord.setYear(Integer.parseInt(albumYearTextField.getText()));
-			}
+			songRecord.setTitle(songTitle);
+			songRecord.setAlbum(albumTitle);
+			songRecord.setArtist(artistName);
+			songRecord.setYear(albumYear);
 			
+			// check that if we are just changing the album title or album year and keeping
+			// the same song title AND same artist name that we don't reject a false duplicate record
+			SongRecordDto oldSongRecord = SongRecordDao.getInstance().getSongRecord(SongLibController.selectedRecordIndex);
 			// check that record is valid, and that a record does not already exist with same title and artist
-			if (!this.isValidTitleAndArtist(songRecord.getTitleAndArtist())) {
+			if (!oldSongRecord.equals(songRecord) && !this.isValidTitleAndArtist(songRecord.getTitleAndArtist())) {
 				Alert alert = new Alert(AlertType.ERROR, songRecord.toString() + " already exists.", ButtonType.OK);
 				alert.showAndWait();
 				return;
@@ -123,6 +120,53 @@ public class SongLibEditController {
 		}
 	}
 	
+	private boolean isValidSongTitle(String songTitle) {
+		if (songTitle == null || songTitle.isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR, "Please Enter a Song Title.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+		if (songTitle.contains("|")) {
+			Alert alert = new Alert(AlertType.ERROR, "Song title cannot contain | characters.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isValidArtistName(String artistName) {
+		if (artistName == null || artistName.isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR, "Please Enter an Artist Name.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+		if (artistName.contains("|")) {
+			Alert alert = new Alert(AlertType.ERROR, "ArtistName cannot contain | characters.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isValidAlbumTitle(String albumTitle) {
+		if (albumTitle.contains("|")) {
+			Alert alert = new Alert(AlertType.ERROR, "Album Title cannot contain | characters.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean parseValidAlbumYear(String albumYear) {
+		if (tryParseInteger(albumYear)) {
+			return true;
+		} else {
+			Alert alert = new Alert(AlertType.ERROR, "Please Enter a Valid Album Year.", ButtonType.OK);
+			alert.showAndWait();
+			return false;
+		}
+	}
+	
 	private boolean isValidTitleAndArtist(String titleAndArtist) {
 		return SongRecordDao.getInstance().isValidTitleAndArtist(titleAndArtist);
 	}
@@ -136,7 +180,10 @@ public class SongLibEditController {
 	
 	private boolean tryParseInteger(String value) {  
 	     try {  
-	         Integer.parseInt(value);  
+	         int year = Integer.parseInt(value);  
+	         if (year < 0 || year > 2025) {
+	        	 return false;
+	         }
 	         return true;  
 	      } catch (NumberFormatException e) {  
 	         return false;  

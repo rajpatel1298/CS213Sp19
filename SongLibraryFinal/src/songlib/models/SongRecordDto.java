@@ -39,7 +39,7 @@ public class SongRecordDto implements Comparable<SongRecordDto> {
 			System.err.println("Error: Song Title and Artist cannot be null.");
 		} else {
 			titleAndArtist = this.getTitle() + this.getArtist();
-			titleAndArtist = titleAndArtist.replaceAll("\\s+","");
+			//titleAndArtist = titleAndArtist.replaceAll("\\s+","");
 			titleAndArtist = titleAndArtist.replaceAll("'","");
 			titleAndArtist = titleAndArtist.toLowerCase();
 		}
@@ -54,6 +54,18 @@ public class SongRecordDto implements Comparable<SongRecordDto> {
 	@Override
 	public String toString() {
 		return "Title: " + this.getTitle() + ",  Artist: " + this.getArtist();
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof SongRecordDto)) {
+			return false;
+		}
+		SongRecordDto newSongRecordDto = (SongRecordDto)o;
+		if (!this.getTitleAndArtist().equals(newSongRecordDto.getTitleAndArtist())) {
+			return false;
+		}
+		return true;
 	}
 	
 }
