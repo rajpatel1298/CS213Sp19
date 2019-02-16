@@ -1,5 +1,11 @@
 package songlib.models;
 
+/*
+ * Ian Moreno
+ * Raj Patel
+ * 
+ */
+
 public class SongRecordDto implements Comparable<SongRecordDto> {
 
 	private String title;

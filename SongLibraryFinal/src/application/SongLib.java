@@ -1,5 +1,11 @@
 package application;
-	
+
+/*
+ * Ian Moreno
+ * Raj Patel
+ * 
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

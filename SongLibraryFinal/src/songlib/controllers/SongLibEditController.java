@@ -1,5 +1,11 @@
 package songlib.controllers;
 
+/*
+ * Ian Moreno
+ * Raj Patel
+ * 
+ */
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
